@@ -6,6 +6,7 @@ import (
 )
 
 func init() {
+  connectToDb()
   registerWorker()
 }
 
