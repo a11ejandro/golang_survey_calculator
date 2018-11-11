@@ -11,7 +11,11 @@ type SurveyResult struct {
 }
 
 func (surveyResult *SurveyResult) Page(page, perPage int) []*SurveyResult {
-  offset := (page - 1) * perPage
+  offset := 0 
+  if (page > 0) {
+    offset = (page - 1) * perPage
+  }
+
   rows, err := db.Query("SELECT survey_results.value, survey_results.task_id FROM survey_results LIMIT $1 OFFSET $2", perPage, offset)
 
   if err != nil {
